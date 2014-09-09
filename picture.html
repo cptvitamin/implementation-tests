@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Accessibility testing picture and source elements and srcset attribute</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<style>
+
+* { box-sizing: border-box; }
+
+body, figure { margin: 0; }
+
+main, header, section, footer {
+    display: block;
+}
+
+img { display: block; width: 100%; }
+
+figure {
+    padding: 1px;
+}
+
+figcaption {
+    display: block;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+    padding: 0;
+}
+
+footer, section {
+    display: block;
+    clear: both;
+}
+
+@media (min-width: 36em) {
+    figure {
+        display: block;
+        float: left;
+        width: 50%;
+    }
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>Accessibility testing <code>&lt;picture&gt;</code> element and <code>&lt;srcset&gt;</code> attribute</h1>
+</header>
+<main>
+<section>
+<h2>Demo of <code>&lt;picture&gt;</code> and <code>&lt;source&gt;</code> elements, and <code>&lt;srcset&gt;</code> attribute</h2>
+<p>The two images below use a either a combination of the <code>&lt;picture&gt;</code> and <code>&lt;source&gt;</code> elements with a  <code>&lt;srcset&gt;</code> attribute defined on the <code>&lt;source&gt;</code>, or the <code>&lt;srcset&gt;</code> attribute on the <code>&lt;img&gt;</code> element directly.  Support for the <code>&lt;picture&gt;</code> element and <code>&lt;srcset&gt;</code> attribute is limited to Chrome Canary Chrome Canary 38+ and Firefox Nightly 34+ with the <code>dom.image.picture.enabled</code> and <code>dom.image.srcset.enabled</code> flags set to "true."  Support for <code>&lt;srcset&gt;</code> also appears in Webkit 7.0.7+. Tests should still be performed on non-supporting browsers as should degrade gracefully, but do not expect alternative resources to be used (default image dimensions are 100px x 100px).  In supporting browsers, changing the size of your viewport and reloading the page should result in the display of images resources with appropriate dimensions.</p>
+<figure>
+    <picture>
+        <source srcset="Sad-pug-100.jpg 100w, Sad-pug-300.jpg 300w, Sad-pug-600.jpg 600w, Sad-pug-1200.jpg 1200w, Sad-pug-1800.jpg 1800w" sizes="49vw">
+        <img src="Sad-pug-100.jpg" alt="A pug (type of dog) with its head tilted to the side">
+    </picture>
+    <figcaption><code>&lt;picture&gt;</code> element with <code>&lt;srcset&gt;</code> attribute on <code>&lt;source&gt;</code> element</figcaption>
+</figure>
+<figure>
+    <img src="Sad-pug-100.jpg" srcset="Sad-pug-100.jpg 100w, Sad-pug-300.jpg 300w, Sad-pug-600.jpg 600w, Sad-pug-1200.jpg 1200w, Sad-pug-1800.jpg 1800w" sizes="49vw" alt="A pug (type of dog) with its head tilted to the side">
+    <figcaption><code>&lt;img&gt;</code> element with <code>&lt;srcset&gt;</code> attribute</figcaption>
+</figure>
+</section>
+<section>
+<h2>Malformed examples</h2>
+<p>The following examples include an alt attribute on the <code>&lt;picture&gt;</code> and <code>&lt;source&gt;</code> elements and are examples of anticipated author errors.  A poor accessibility experience is expected, but included here to test behavior.</p>
+<figure>
+    <picture alt="A pug (type of dog) with its head tilted to the side">
+        <source srcset="Sad-pug-100.jpg 100w, Sad-pug-300.jpg 300w, Sad-pug-600.jpg 600w, Sad-pug-1200.jpg 1200w, Sad-pug-1800.jpg 1800w" sizes="49vw">
+        <img src="Sad-pug-100.jpg">
+    </picture>
+    <figcaption><code>&lt;alt&gt;</code> attribute set on the <code>&lt;picture&gt;</code> element</figcaption>
+</figure>
+<figure>
+    <picture>
+        <source srcset="Sad-pug-100.jpg 100w, Sad-pug-300.jpg 300w, Sad-pug-600.jpg 600w, Sad-pug-1200.jpg 1200w, Sad-pug-1800.jpg 1800w" sizes="49vw" alt="A pug (type of dog) with its head tilted to the side">
+        <img src="Sad-pug-100.jpg">
+    </picture>
+    <figcaption><code>&lt;alt&gt;</code> attribute set on a <code>&lt;source&gt;</code> element that includes a <code>&lt;srcset&gt;</code> attribute.</figcaption>
+</figure>
+</section>
+<section>
+<h2><code>&lt;img&gt;</code> element with <code>&lt;alt&gt;</code> attribute for reference</h2>
+<p>Here is an example of a old fashioned <code>&lt;img&gt;</code> element with a properly defined <code>&lt;alt&gt;</code> attribute for reference.</p>
+<figure>
+    <img src="Sad-pug-100.jpg" srcset="Sad-pug-100.jpg 100w, Sad-pug-300.jpg 300w, Sad-pug-600.jpg 600w, Sad-pug-1200.jpg 1200w, Sad-pug-1800.jpg 1800w" sizes="49vw" alt="A pug (type of dog) with its head tilted to the side">
+    <figcaption><code>&lt;img&gt;</code> element with an <code>&lt;alt&gt;</code> attribute</figcaption>
+</figure>
+</section>
+</main>
+<footer>
+    <p>"<a href="https://commons.wikimedia.org/wiki/File:Sad-pug.jpg#mediaviewer/File:Sad-pug.jpg">Sad-pug</a>" by <a href="//commons.wikimedia.org/w/index.php?title=User:DodosD&amp;action=edit&amp;redlink=1" class="new" title="User:DodosD (page does not exist)">DodosD</a>. Licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a> via <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>.</p>
+</footer>
+
+</body>
+</html>
